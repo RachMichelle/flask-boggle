@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block game %}
+
+<div id="score">
+    <h3 id="score-count">Score: 0</h3>
+</div>
+
+<div id="feedback">
+    <h3></h3>
+</div>
+
+<container id="board">
+    <form id="guess-form">
+        <label for="guess">Guess A Word: </label>
+        <input name="guess" id="guess">
+        <button id="submit-guess">Submit!</button>
+    </form>
+    <div id="game" action="#">
+        <table>
+            {% for y in game_board %}
+            <tr>
+                {% for x in y %}
+                <td class="letter">{{x}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</container>
+
+<a href="/">
+    <button id="quit-button">Quit</button>
+</a>
+
+{% endblock %}
