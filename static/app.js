@@ -3,8 +3,14 @@ const submitButton = document.querySelector('#submit-guess');
 const feedback = document.querySelector('#feedback')
 const displayedScore = document.querySelector('#score-count')
 
-score = 0;
-wordsFound= [];
+const wordsFound= [];
+
+getScore();
+
+async function getScore() {
+    res = await axios.get('/score');
+    displayedScore.innerHTML = `Score: ${res.data.score}`;
+}
 
 async function handleSubmit(evt){
     evt.preventDefault();
@@ -35,8 +41,7 @@ async function handleSubmit(evt){
     }
     if (res.data.result === "ok"){
         showResponse(`&check;`)
-        score += 1;
-        displayedScore.innerHTML = `Score: ${score}`;
+        displayedScore.innerHTML = `Score: ${res.data.score}`;
         guessInput.value = '';
         wordsFound.push(word)
     }
